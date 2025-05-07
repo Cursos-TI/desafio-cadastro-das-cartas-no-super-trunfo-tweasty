@@ -5,22 +5,31 @@
 int main() {
 
     //cria as "Caixas" da carta 1
-    int populacao;
+    unsigned long int populacao;
     float area;
     float pib;
     float densidade;
     float capta;
     int turistas;
+    int resultadoArea;
+    int ResultadoPIB;
+    int ResultadoDENSI;
+    int ResultadoCAPTA;
+    int ResultadoTURISTA;
+    int ResultadoPOPULACAO;
+    int ResultadoSUPERPODER;
     char estado;
     char nome[50];
     char codigo[20];
+    
+
 
 
 
 
     //cria as outras "Caixas" da carta 2 sem perder a carta 1.
 
-    int populacao2;
+    unsigned long int populacao2;
     float area2;
     float pib2;
     float densidade2;
@@ -51,24 +60,27 @@ int main() {
 
     printf("Escolha o tamanho da cidade. (em numeros sem pontuação.)\n>>");
     scanf("%f", &area);
-    getchar();
+    
 
     printf("Escolha o tamanho do PIB desse estado.\n>>");
     scanf("%f", &pib);
-    getchar();
+    
 
     printf("Escolha o tamanho da população.\n>>");
-    scanf("%i", &populacao);
-    getchar();
+    scanf("%u", &populacao);
+    
 
     printf("Escolha quantos pontos turisticos o local tem.\n>>");
     scanf("%i", &turistas);
-    getchar();
+    
 
     // Faz o calculo da densidade e do pib per capta
 
     densidade = (float)populacao / area;
     capta = (float)pib / populacao;
+
+    // faz o calculo do super poder 1 e 2
+    float superpoder = (float)turistas + (float)populacao + area + pib + capta + (1 / densidade);
 
 
     //printa as informações que foram guardadas no console.
@@ -78,10 +90,11 @@ int main() {
     printf("            Nome da Cidade: %s\n",nome);
     printf("            Tamanho da Area da cidade: %f km²\n", area);
     printf("            Valor do PIB do estado: %f Reais\n", pib);
-    printf("            Total de população: %i pessoas\n", populacao);
+    printf("            Total de população: %u pessoas\n", populacao);
     printf("            Com aproximadamente %i pontos turisticos.\n", turistas);
     printf("            Densidade Populacional: %f hab/km²\n ", densidade);
     printf("           Pib per capta: %f Reais\n", capta);
+    printf("            SuperPoder:%f\n", superpoder);
 
 
     //"Recomeça" a fazer a intro.
@@ -107,25 +120,29 @@ int main() {
 
     printf("Escolha o tamanho da cidade. (em numeros sem pontuação.)\n>>");
     scanf("%f", &area2);
-    getchar();
+    
 
     printf("Escolha o tamanho do PIB desse estado.\n>>");
-    scanf("%.4f", &pib2);
-    getchar();
+    scanf("%f", &pib2);
+    
 
     printf("Escolha o tamanho da população.\n>>");
-    scanf("%i", &populacao2);
-    getchar();
+    scanf("%u", &populacao2);
+    
 
     printf("Escolha quantos pontos turisticos o local tem.\n>>");
     scanf("%i", &turistas2);
-    getchar();
+    
 
 
     //Faz o calculo de PIB PER CAPTA2 e DENSIDADE POPULACIONAL2.
 
     densidade2 = (float)populacao2 / area2;
     capta2 = (float)pib2 / populacao2;
+
+    //faz o calculo superpoder2
+
+    float superpoder2 = (float)turistas2 + (float)populacao2 + area2 + pib2 + capta2 + (1 / densidade2);
 
 
     //Coloca no console as informações 2
@@ -135,10 +152,35 @@ int main() {
     printf("            Nome da Cidade: %s\n",nome2);
     printf("            Tamanho da Area da cidade: %f km²\n", area2);
     printf("            Valor do PIB do estado: %f Reais\n", pib2);
-    printf("            Total de população: %i pessoas\n", populacao2);
+    printf("            Total de população: %u pessoas\n", populacao2);
     printf("            Com aproximadamente %i pontos turisticos.\n", turistas2);
     printf("            Densidade Populacional: %f hab/km²\n ", densidade2);
     printf("           Pib per capta: %f Reais\n", capta2);
+    printf("           SuperPoder: %f\n", superpoder2);
+
+
+    // pega as informações das cartas e compara qual ganhou.
+
+    resultadoArea = area > area2;
+    ResultadoPIB = pib > pib2;
+    ResultadoPOPULACAO = populacao > populacao2;
+    ResultadoTURISTA = turistas > turistas2;
+    ResultadoDENSI = densidade < densidade2;
+    ResultadoCAPTA = capta > capta2;
+    ResultadoSUPERPODER = superpoder > superpoder2;
+
+    //Envia as informações para o usuario
+    printf("Carta 1 = Primeira carta, Carta 0 = Segunda Carta!\n");
+    printf("Carta %i Venceu!\n", resultadoArea);
+    printf("Carta %i Venceu!\n", ResultadoPIB);
+    printf("Carta %i Venceu!\n", ResultadoPOPULACAO);
+    printf("Carta %i Venceu!\n", ResultadoTURISTA);
+    printf("Carta %i Venceu!\n", ResultadoDENSI);
+    printf("Carta %i Venceu!\n", ResultadoCAPTA);
+    printf("Carta %i Venceu!\n", ResultadoSUPERPODER);
+    
+    
+    
 
     
     return 0;
